@@ -12,7 +12,7 @@ class EventRegistrants extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['event_id', 'occupation_id', 'name', 'company', 'email', 'phone'];
+    protected $fillable = ['event_id', 'occupation_id', 'code', 'name', 'company', 'email', 'phone'];
 
     public function event(){
         return $this->belongsTo(Events::class, 'event_id');

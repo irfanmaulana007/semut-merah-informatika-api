@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('events', 'EventController');
+Route::resource('occupations', 'OccupationController');
+Route::resource('event-registration', 'EventRegistrantController');

@@ -3,38 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
-use App\Models\Events;
-use App\Models\EventDatetimes;
+use App\Models\Occupations;
 
-class EventController extends Controller
+class OccupationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // Upcoming Events
-        if ($request->eventType == 1) {
-            $upcomingEventId = EventDateTimes::WhereDate('date', '>', Carbon::now())->OrderBy('date', 'DESC')->get()->pluck('event_id');
-            $events = Events::WhereIn('id', $upcomingEventId)->With('datetimes')->get();
-        }
-        // Past Events
-        else if ($request->eventType == 2) {
-            $pastEventId = EventDateTimes::WhereDate('date', '<=', Carbon::now())->OrderBy('date', 'DESC')->get()->pluck('event_id');
-            $events = Events::WhereIn('id', $pastEventId)->With('datetimes')->get();
-        }
-        // All Events
-        else {
-            $events = Events::all();
-        }
+        $occupations = Occupations::OrderBy('name', 'ASC')->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $events
+            'data' => $occupations
         ]);
     }
 
@@ -67,14 +52,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Events::Where('id', $id)
-            ->With('contactPersons', 'facilities', 'fees.feeType:id,name', 'eventSpeakerActivities.speaker:id,name', 'datetimes')
-            ->first();
-        
-        return response()->json([
-            'status' => 'success',
-            'data' => $event
-        ]);
+        //
     }
 
     /**
@@ -109,9 +87,5 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getByEventType($eventType) {
-        return response()->json($eventType);
     }
 }

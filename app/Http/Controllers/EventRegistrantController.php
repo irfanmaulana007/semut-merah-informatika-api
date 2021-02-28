@@ -5,37 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\Models\Events;
-use App\Models\EventDatetimes;
+use App\Models\EventRegistrants;
 
-class EventController extends Controller
+class EventRegistrantController extends Controller
 {
+    private $payload = ['event_id', 'occupation_id', 'name', 'companty', 'email', 'phone'];
+
+    public function randomNumberGenerator() {
+        $characters = '0123456789';
+
+        $pin = mt_rand(1, 9)
+            . mt_rand(1, 9)
+            . $characters[rand(0, strlen($characters) - 1)];
+
+        // shuffle the result
+        $string = str_shuffle($pin);
+
+        return $string;
+    }
+ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // Upcoming Events
-        if ($request->eventType == 1) {
-            $upcomingEventId = EventDateTimes::WhereDate('date', '>', Carbon::now())->OrderBy('date', 'DESC')->get()->pluck('event_id');
-            $events = Events::WhereIn('id', $upcomingEventId)->With('datetimes')->get();
-        }
-        // Past Events
-        else if ($request->eventType == 2) {
-            $pastEventId = EventDateTimes::WhereDate('date', '<=', Carbon::now())->OrderBy('date', 'DESC')->get()->pluck('event_id');
-            $events = Events::WhereIn('id', $pastEventId)->With('datetimes')->get();
-        }
-        // All Events
-        else {
-            $events = Events::all();
-        }
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $events
-        ]);
+        //
     }
 
     /**
@@ -56,7 +52,29 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $code = 'EVT' . Carbon::now()->format('ymdH') . $this->randomNumberGenerator();
+        $checkExistingData = EventRegistrants::Where('code', $code)->OrderBy('created_at', 'DESC')->first();
+
+        if ($checkExistingData) {
+            $this->store($request);
+
+            return false;
+        }
+        
+        $eventRegistrants = EventRegistrants::Create([
+            "event_id" => $request->event_id,
+            "occupation_id" => $request->occupation_id,
+            "code" => $code,
+            "name" => $request->name,
+            "company" => $request->company,
+            "email" => $request->email,
+            "phone" => $request->phone
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $eventRegistrants
+        ]);
     }
 
     /**
@@ -67,14 +85,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Events::Where('id', $id)
-            ->With('contactPersons', 'facilities', 'fees.feeType:id,name', 'eventSpeakerActivities.speaker:id,name', 'datetimes')
-            ->first();
-        
-        return response()->json([
-            'status' => 'success',
-            'data' => $event
-        ]);
+        //
     }
 
     /**
@@ -109,9 +120,5 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getByEventType($eventType) {
-        return response()->json($eventType);
     }
 }

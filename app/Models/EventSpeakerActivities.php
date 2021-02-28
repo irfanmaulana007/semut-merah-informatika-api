@@ -19,6 +19,6 @@ class EventSpeakerActivities extends Model
     }
 
     public function speaker(){
-        return $this->belongsTo(EventSpeaker::class, 'speaker_id');
+        return $this->belongsTo(EventSpeakers::class, 'speaker_id');
     }
 }

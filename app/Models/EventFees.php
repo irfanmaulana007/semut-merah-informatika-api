@@ -18,7 +18,7 @@ class EventFees extends Model
         return $this->belongsTo(Events::class, 'event_id');
     }
     
-    public function feeTypes(){
+    public function feeType(){
         return $this->belongsTo(FeeTypes::class, 'fee_type_id');
     }
 }

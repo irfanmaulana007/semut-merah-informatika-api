@@ -10,15 +10,16 @@ use App\Models\EventContactPersons;
 use App\Models\EventFacilities;
 use App\Models\EventRegistrants;
 use App\Models\EventFees;
+use App\Models\EventDatetimes;
 
 class Events extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'precondition', 'capacity', 'img_url'];
+    protected $fillable = ['name', 'description', 'precondition', 'capacity', 'img_url', 'location'];
 
     public function eventSpeakerActivities(){
-        return $this->hasMany(EventSpeakerActivities::class, 'speaker_id');
+        return $this->hasMany(EventSpeakerActivities::class, 'event_id');
     }
 
     public function contactPersons(){
@@ -35,5 +36,9 @@ class Events extends Model
 
     public function fees(){
         return $this->hasMany(EventFees::class, 'event_id');
+    }
+
+    public function datetimes(){
+        return $this->hasMany(EventDatetimes::class, 'event_id');
     }
 }

@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('precondition')->nullable();
             $table->integer('capacity')->nullable();
             $table->string('img_url')->nullable();
+            $table->string('location');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

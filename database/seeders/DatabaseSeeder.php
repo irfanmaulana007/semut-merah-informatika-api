@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             OccupationsSeeder::class,
             EventSpeakersSeeder::class,
             EventsSeeder::class,
+            EventDatetimeSeeder::class,
+            EventSpeakerActivitiesSeeder::class,
             EventContactPersonsSeeder::class,
             EventFacilitiesSeeder::class,
             EventRegistrantsSeeder::class,
