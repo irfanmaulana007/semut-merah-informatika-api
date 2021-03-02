@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Models\EventRegistrants;
+use App\Models\Occupations;
 
 class EventRegistrantController extends Controller
 {
@@ -60,6 +61,8 @@ class EventRegistrantController extends Controller
 
             return false;
         }
+
+        $occupation = Occupations::Where('id', $request->occupation_id)->first();
         
         $eventRegistrants = EventRegistrants::Create([
             "event_id" => $request->event_id,
@@ -68,12 +71,15 @@ class EventRegistrantController extends Controller
             "name" => $request->name,
             "company" => $request->company,
             "email" => $request->email,
-            "phone" => $request->phone
+            "phone" => $request->phone,
         ]);
 
         return response()->json([
             'status' => 'success',
-            'data' => $eventRegistrants
+            'data' => $eventRegistrants,
+            "occupation" => $occupation->name,
+            "payment_amount" => $request->payment_amount
+            
         ]);
     }
 
