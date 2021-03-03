@@ -12,20 +12,20 @@ class MailController extends Controller
 {
     public function view() {
         $data = [
-            "occupation" => "Website Engineer",
             "name" => "irfan",
             "company" => "Semut Merah Informatika",
             "email" => "irfanmaulana695@gmail.com",
             "phone" => "08617289193",
             "code" => "EVT21030117903",
         ];
+        $occupation = "Website Engineer";
         $payment_amount = 100000;
 
         $date = Carbon::now();
         $date = date('d M Y  H:i:s', strtotime($date));
 
 		return view('emails.payment')
-                ->with(['data' => $data, 'date' => $date, 'payment_amount' => $payment_amount]);
+                ->with(['data' => $data, 'date' => $date, 'occupation' => $occupation, 'payment_amount' => $payment_amount]);
     }
 
     public function sendPaymentMail(Request $request) {
@@ -35,13 +35,13 @@ class MailController extends Controller
         $occupation = $request->occupation;
         $payment_amount = $request->payment_amount;
 
-        // try {
+        try {
 			Mail::to($data['email'])->send(new PaymentMail($data, $date, $occupation, $payment_amount));
 			
 			return response()->json('success');
-    	// } catch (\Exception $e) {
-    	// 	return $e->getMessage();
-    	// }
+    	} catch (\Exception $e) {
+    		return $e->getMessage();
+    	}
         
     }
 }

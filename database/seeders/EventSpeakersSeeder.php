@@ -17,7 +17,8 @@ class EventSpeakersSeeder extends Seeder
     {
         EventSpeakers::Create([
             'name' => 'agra',
-            'email' => 'agra@gmail.com'
+            'email' => 'agra@gmail.com',
+            'linkedin' => 'https://www.linkedin.com/in/abarecasco/',
         ]);
         
         EventSpeakers::Create([

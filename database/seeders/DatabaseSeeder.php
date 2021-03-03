@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
             EventSpeakerActivitiesSeeder::class,
             EventContactPersonsSeeder::class,
             EventFacilitiesSeeder::class,
-            EventRegistrantsSeeder::class,
+            // EventRegistrantsSeeder::class,
             FeeTypesSeeder::class,
             EventFeesSeeder::class,
             PaymentStatusSeeder::class,
-            EventPaymentsSeeder::class,
+            // EventPaymentsSeeder::class,
         ]);
     }
 }

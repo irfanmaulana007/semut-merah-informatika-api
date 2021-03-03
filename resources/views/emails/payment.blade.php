@@ -57,9 +57,46 @@
                 <td><b>@currencyFormat((int) $payment_amount)</b></td>
             </tr>
         </table>
+        <p><i>*Harap menuliskan booking code pada keterangan pembayaran.</i></p>
+        <p><i>*Pembayaran harus dilakukan dalam 1x24 jam.</i></p>
+        <br>
+        <p>Setelah melakukan pembayaran <b>harap mengirimkan email konfirmasi </b>ke:</p>
+        <table>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td><b>training@semutmerah-analytics.com</b></td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td>:</td>
+                <td><b>Konfirmasi Pembayaran Training SMI</b></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>:</td>
+                <td><b>@currencyFormat((int) $payment_amount)</b></td>
+            </tr>
+            <tr>
+                <td>Bank</td>
+                <td>:</td>
+                <td><b></b></td>
+            </tr>
+            <tr>
+                <td>Rekening Atas Nama</td>
+                <td>:</td>
+                <td><b></b></td>
+            </tr>
+        </table>
 
+        <p><i>*Harap melampirkan bukti transfer pada email tersebut.</i></p>
+
+        <br>
+        <p>Silahkan kontak kami di 085159091137 (Whatsapp) untuk informasi lebih lanjut.</p>
+
+        <br><br>
         <footer>
-            &copy;2019 Semut Merah Informatika 
+            <small>&copy;2019 Semut Merah Informatika</small>
         </footer>
     </body>
 </html>

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Collection;
 use Carbon\Carbon;
 
 use App\Models\Events;
 use App\Models\EventDatetimes;
+use App\Models\EventRegistrants;
 
 class EventController extends Controller
 {
@@ -68,13 +71,23 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Events::Where('id', $id)
-            ->With('contactPersons', 'facilities', 'fees.feeType:id,name', 'eventSpeakerActivities.speaker:id,name', 'datetimes')
+            ->With('contactPersons', 'facilities', 'fees.feeType:id,name', 'eventSpeakerActivities.speaker:id,name,linkedin', 'datetimes')
             ->first();
+
+        $eventStatus;
+        $countRegistrant  = EventRegistrants::Where('event_id', $id)->count();
+        if ($countRegistrant < $event->capacity) { $eventStatus = true; }
+        else { $eventStatus = false; }
+
+        $data = Collection::make([
+            "event" => $event,
+            "status" => $eventStatus
+        ]);
         
         return response()->json([
             'status' => 'success',
-            'data' => $event
-        ]);
+            'data' => $data
+        ], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**

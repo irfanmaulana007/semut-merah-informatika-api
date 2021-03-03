@@ -11,7 +11,7 @@ class EventSpeakers extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'linkedin'];
 
     public function eventSpeakerActivities(){
         return $this->hasMany(EventSpeakerActivities::class, 'speaker_id');

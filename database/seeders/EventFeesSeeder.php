@@ -19,13 +19,13 @@ class EventFeesSeeder extends Seeder
             'event_id' => 1,
             'fee_type_id' => 1,
             'amount' => 500000,
-            'end_date' => '2021-03-1'
+            'end_date' => '2021-03-12'
         ]);
 
         EventFees::Create([
             'event_id' => 1,
             'fee_type_id' => 2,
-            'amount' => 650000,
+            'amount' => 625000,
             'end_date' => null
         ]);
     }
