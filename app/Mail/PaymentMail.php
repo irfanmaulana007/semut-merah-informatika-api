@@ -34,7 +34,7 @@ class PaymentMail extends Mailable
     public function build()
     {
         $subject = 'Payment Instruction #' . $this->data['code'] . ' | Semut Merah Analytics';
-        $ccEmail = 'irfanmaulana695@gmail.com';
+        $ccEmail = 'irwan@semutmerah-analytics.com';
         
         return $this->view('emails.payment')
                     ->to($this->data['email'])
