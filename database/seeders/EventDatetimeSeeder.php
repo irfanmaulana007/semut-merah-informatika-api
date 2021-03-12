@@ -17,16 +17,16 @@ class EventDatetimeSeeder extends Seeder
     {
         EventDateTimes::Create([
             'event_id' => 1,
-            'date' => '2021-03-16',
+            'date' => '2021-03-30',
             'start_time' => '10:00',
-            'end_time' => '15:00'
+            'end_time' => '14:00'
         ]);
 
         EventDateTimes::Create([
             'event_id' => 1,
-            'date' => '2021-03-17',
+            'date' => '2021-03-31',
             'start_time' => '10:00',
-            'end_time' => '12:00'
+            'end_time' => '14:00'
         ]);
 
 

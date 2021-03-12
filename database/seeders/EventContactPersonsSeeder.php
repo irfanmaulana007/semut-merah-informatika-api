@@ -17,7 +17,7 @@ class EventContactPersonsSeeder extends Seeder
     {
         EventContactPersons::Create([
             'event_id' => 1,
-            'name' => 'Dania',
+            'name' => 'SMI Training Center',
             'contact' => '085159091137'
         ]);
     }
