@@ -3,9 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailer as Mail;
 
 class PaymentMail extends Mailable
 {
@@ -34,7 +35,7 @@ class PaymentMail extends Mailable
     public function build()
     {
         $subject = 'Payment Instruction #' . $this->data['code'] . ' | Semut Merah Analytics';
-        $ccEmail = 'irwan@semutmerah-analytics.com';
+        $ccEmail = ['irwan@semutmerah-analytics.com', 'benny@semutmerah-analytics.com'];
         
         return $this->view('emails.payment')
                     ->to($this->data['email'])
