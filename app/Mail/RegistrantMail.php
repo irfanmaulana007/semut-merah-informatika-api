@@ -34,12 +34,12 @@ class RegistrantMail extends Mailable
     public function build()
     {
         $subject = 'New Registrant | Semut Merah Analytics';
-        $recevierEmail = 'irfanmaulana695@gmail.com';
-        $ccEmail = ['irwan@semutmerah-analytics.com', 'benny@semutmerah-analytics.com'];
+        $recevierEmail = 'training@semutmerah-analytics.com';
+        $ccEmail = ['irwan@semutmerah-analytics.com', 'benny@semutmerah-analytics.com', 'dody@semutmerah-analytics.com'];
         
         return $this->view('emails.registrant')
                     ->to($recevierEmail)
-                    // ->cc($ccEmail)
+                    ->cc($ccEmail)
                     ->subject($subject)
                     ->with('data', $this->data)
                     ->with('event', $this->event);
