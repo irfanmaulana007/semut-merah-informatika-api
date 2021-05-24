@@ -30,5 +30,12 @@ class EventsSeeder extends Seeder
             'img_url' => '',
             'location' => 'online'
         ]);
+
+        Events::Create([
+            'name' => 'title',
+            'description' => 'test',
+            'img_url' => '1.png',
+            'location' => 'online'
+        ]);
     }
 }

@@ -76,7 +76,7 @@ class EventController extends Controller
 
         $eventStatus;
         $countRegistrant  = EventRegistrants::Where('event_id', $id)->count();
-        if ($countRegistrant < $event->capacity) { $eventStatus = true; }
+        if ($countRegistrant < $event->capacity || $event->capacity == null) { $eventStatus = true; }
         else { $eventStatus = false; }
 
         $data = Collection::make([

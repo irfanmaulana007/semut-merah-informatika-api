@@ -26,5 +26,8 @@ Route::get('image/{filename}', 'ImageController@showImage');
 
 // Email Template
 // Payment
-Route::get('email/payment', 'MailController@view');
+Route::get('email/payment', 'MailController@paymentView');
 Route::post('email/payment', 'MailController@sendPaymentMail');
+
+Route::get('email/registrant', 'MailController@registrantView');
+Route::post('email/registrant', 'MailController@sendRegistrantMail');

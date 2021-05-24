@@ -19,16 +19,17 @@ class CreateEventRegistrantsTable extends Migration
             $table->bigInteger('occupation_id')->unsigned();
             $table->string('code')->index();
             $table->string('name');
-            $table->string('company');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('company')->nullable();
+            $table->string('occupation')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
         
         Schema::table('event_registrants', function($table) {
             $table->foreign('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('occupation_id')->references('id')->on('occupations')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('occupation_id')->references('id')->on('occupations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -28,5 +28,12 @@ class EventFeesSeeder extends Seeder
             'amount' => 625000,
             'end_date' => null
         ]);
+
+        EventFees::Create([
+            'event_id' => 3,
+            'fee_type_id' => 1,
+            'amount' => 0,
+            'end_date' => null
+        ]);
     }
 }

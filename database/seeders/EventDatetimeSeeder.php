@@ -44,5 +44,13 @@ class EventDatetimeSeeder extends Seeder
             'start_time' => '13:30',
             'end_time' => '16:30'
         ]);
+
+
+        EventDateTimes::Create([
+            'event_id' => 3,
+            'date' => '2021-06-07',
+            'start_time' => '13:30',
+            'end_time' => '16:30'
+        ]);
     }
 }

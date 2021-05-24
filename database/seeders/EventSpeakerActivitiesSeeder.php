@@ -19,5 +19,10 @@ class EventSpeakerActivitiesSeeder extends Seeder
             'event_id' => 1,
             'speaker_id' => 1
         ]);
+
+        EventSpeakerActivities::Create([
+            'event_id' => 3,
+            'speaker_id' => 1
+        ]);
     }
 }

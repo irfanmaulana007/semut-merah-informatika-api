@@ -69,15 +69,14 @@ class EventRegistrantController extends Controller
             "occupation_id" => $request->occupation_id,
             "code" => $code,
             "name" => $request->name,
-            "company" => $request->company,
             "email" => $request->email,
             "phone" => $request->phone,
+            "company" => $request->company
         ]);
 
         return response()->json([
             'status' => 'success',
             'data' => $eventRegistrants,
-            "occupation" => $occupation->name,
             "payment_amount" => $request->payment_amount
             
         ]);

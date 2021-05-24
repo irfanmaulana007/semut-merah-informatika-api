@@ -24,5 +24,10 @@ class EventFacilitiesSeeder extends Seeder
             'event_id' => 1,
             'description' => 'E-Certificate'
         ]);
+
+        EventFacilities::Create([
+            'event_id' => 3,
+            'description' => 'E-Certificate'
+        ]);
     }
 }
