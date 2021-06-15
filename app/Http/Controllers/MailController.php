@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 use App\Mail\PaymentMail;
 use App\Mail\RegistrantMail;
+use App\Mail\RegistrantNotificationMail;
 use App\Models\Events;
 
 class MailController extends Controller
@@ -72,7 +73,8 @@ class MailController extends Controller
         $event = Events::Where('id', $data['event_id'])->first();
 
         try {
-			Mail::to($data['email'])->send(new RegistrantMail($data, $date, $event));
+			Mail::send(new RegistrantMail($data, $date, $event));
+			Mail::send(new RegistrantNotificationMail($data, $date, $event));
 			
 			return response()->json('success');
     	} catch (\Exception $e) {

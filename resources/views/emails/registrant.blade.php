@@ -7,7 +7,7 @@
     <body>
         <img src="{{ asset('images/logo.png') }}" alt="logo">
 
-        <p>Hello there,</p>
+        <p>Halo,</p>
         <p>User baru telah mendaftarkan untuk event:</p>
 
         <table>

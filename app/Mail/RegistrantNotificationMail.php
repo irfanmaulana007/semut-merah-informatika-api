@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailer as Mail;
 
-class RegistrantMail extends Mailable
+class RegistrantNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,14 +33,11 @@ class RegistrantMail extends Mailable
      */
     public function build()
     {
-        $subject = 'New Registrant';
-        $recevierEmail = 'irfan@semutmerah-analytics.com';
-        // $recevierEmail = 'training@semutmerah-analytics.com';
-        $ccEmail = ['irwan@semutmerah-analytics.com', 'benny@semutmerah-analytics.com', 'dody@semutmerah-analytics.com', 'irfan@semutmerah-analytics.com'];
+        $subject = 'Semut Merah Informatika Training';
+        $ccEmail = ['irfan@semutmerah-analytics.com'];
         
-        return $this->view('emails.registrant')
-                    ->to($recevierEmail)
-                    // ->cc($ccEmail)
+        return $this->view('emails.registrantNotification')
+                    ->to($this->data['email'])
                     ->subject($subject)
                     ->with('data', $this->data)
                     ->with('event', $this->event);
